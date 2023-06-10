@@ -1,7 +1,8 @@
+import os
 import json
-import os.path
 
 from flask import Flask, request
+from flask_cors import CORS
 
 
 class DataManager:
@@ -62,6 +63,7 @@ def check_header():
 
 
 app = Flask(__name__)
+CORS(app)
 data_manager = DataManager()
 
 

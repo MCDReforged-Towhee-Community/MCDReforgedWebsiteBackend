@@ -6,7 +6,8 @@ from flask_cors import CORS
 
 
 class DataManager:
-    PATH = "data.json"
+    DIR = "data"
+    PATH = os.path.join(DIR, "data.json")
 
     def __init__(self):
         self.__data: dict[str, int] = {}
@@ -20,6 +21,9 @@ class DataManager:
                 self.__data = json.load(f)
 
     def __save(self) -> None:
+        if os.path.isdir(self.DIR):
+            os.makedirs(self.DIR)
+
         with open(self.PATH, "w") as f:
             json.dump(self.__data, f, indent=4)
 

@@ -21,7 +21,7 @@ class DataManager:
                 self.__data = json.load(f)
 
     def __save(self) -> None:
-        if os.path.isdir(self.DIR):
+        if not os.path.isdir(self.DIR):
             os.makedirs(self.DIR)
 
         with open(self.PATH, "w") as f:

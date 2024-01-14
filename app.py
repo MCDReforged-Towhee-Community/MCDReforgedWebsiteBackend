@@ -1,7 +1,7 @@
 import os
 import json
 
-from flask import Flask, request
+from flask import Flask, request, send_file
 from flask_cors import CORS
 
 
@@ -78,6 +78,11 @@ def get_all():
         return "Unauthorized", 401
 
     return data_manager.data
+
+
+@app.route("/robots.txt", methods=["GET"])
+def get_robots_txt():
+    return send_file("robots.txt")
 
 
 @app.route("/<plugin>", methods=["GET"])
